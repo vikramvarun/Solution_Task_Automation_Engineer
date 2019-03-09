@@ -30,17 +30,9 @@ public class ArrangeWords {
     static int valueOfWord (String word){
         int value = 0;
         for (int i=0; i<word.length(); i++){
-            int indexValue = (int) (word.charAt(i));
-            /*ASCII value of ith character in word*/
-            if (indexValue > 90){
-                /*If the character is a small letter, its ASCII code takes values from 97-122 for a-z and thus reducing 96 gives required value*/
-                indexValue -= 96;
-            }
-            else{
-                /*If the character is a small letter, its ASCII code takes values from 65-90 for A-Z and thus reducing 64 gives required value*/
-                indexValue -= 64;
-            }
-            value += indexValue;
+            value += ((int) (word.charAt(i))) % 32;
+            /*ASCII value of ith character in word
+            If the character is a small letter, its ASCII code takes values from 97-122 for a-z. If the character is a small letter, its ASCII code takes values from 65-90 for A-ZBoth 97 and 65 can be written as 32*x+1 (x= 3 and 2 respectively). Similarly b/B - z/Z can be written as (32*x + i). It is athenadded to existing value of the word to get cumulative value */
         }
         return value;
     }
