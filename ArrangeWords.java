@@ -18,9 +18,46 @@ converts to:
 33  62        28  98      39 1 39  27
 and on ordering the sentence becomes:
 a ball is the for dot enemy rooting */
+
 import java.io.*;
 public class ArrangeWords {
-  public static void main (String[] args) throws IOException {
-    
-  }
+    static int valueOfWord (String word){
+        int value = 0;
+        for (int i=0; i<word.length(); i++){
+            int indexValue = (int) (word.charAt(i));
+            /*ASCII value of ith character in word*/
+            if (indexValue > 90){
+                /*If the character is a small letter, its ASCII code takes values from 97-122 for a-z and thus reducing 96 gives required value*/
+                indexValue -= 96;
+            }
+            else{
+                /*If the character is a small letter, its ASCII code takes values from 65-90 for A-Z and thus reducing 64 gives required value*/
+                indexValue -= 64;
+            }
+            value += indexValue;
+        }
+        return value;
+    }
+    public static void main(String args[] ) throws Exception {
+        InputStreamReader in = new InputStreamReader(System.in); 
+        BufferedReader br = new BufferedReader(in);
+        String[] words = br.readLine().split(" ");
+        /*words[] is the array that stores all words in give string at a separate index*/
+        int[] values = new int[words.length];   
+        /*words.length is length of array i.e. number of words in the given string*/
+        for (int i=0; i<words.length-1; i++) {           
+            for (int j=0; j<words.length-i-1; j++) {
+                int value1 = valueOfWord(words[j]);
+                int value2 = valueOfWord(words[j+1]);
+                if (value2 < value1){
+                    String temp = words[j];
+                    words[j] = words[j+1];
+                    words[j+1] = temp;
+                }
+            }
+        }   
+        for (int i=0; i<words.length; i++) {
+            System.out.print(words[i]+" ");
+        }
+    }
 }
