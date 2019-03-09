@@ -1,4 +1,10 @@
-/* A sentence is composed of words and each word is composed of letters.
+/*Code submitted by: Vikram Varun
+Submitted for: rippling
+*/
+
+/*Problem statement
+
+A sentence is composed of words and each word is composed of letters.
 Assuming value of each letter equals its position in the alphabet and value of each word is the sum of the value of the letters, write a function to  order the words of the sentence in the ascending order. 
 (a=1, b=2,... etc)
 cat = 3 + 1 + 20 = 24
